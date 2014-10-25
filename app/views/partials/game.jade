@@ -1,0 +1,15 @@
+div(id="game")
+	h1
+		|{{ game.name }}
+		small {{ game.description }}
+		
+	ul(id="levels", class="picker-list", ng-if="progress.inProgress")
+		li(ng-repeat="level in game.levels", class="pull-left text-center", ng-class="{last: ($index === (game.levels.length - 1))}")
+			a(ng-href="/games/{{ game.slug }}/{{ level.slug }}")
+				h2 {{ level.name }}
+
+	div(ng-if="progress.locked")
+		p Game locked
+
+	div(ng-if="progress.completed")
+		p Game completed

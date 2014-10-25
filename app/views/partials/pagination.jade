@@ -1,0 +1,4 @@
+//- td
+//- 	a(ng-if="prev", ng-href="#{{ prevPath }}") Prev: {{ prev.infinitive }}
+td(ng-show="isComplete()")
+	a(ng-if="next", ng-href="{{ currentLevelPath }}/{{ next }}") Next: {{ next }}

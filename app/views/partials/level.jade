@@ -1,0 +1,6 @@
+div(class="row")
+	h1 {{ level.name.charAt(0).toUpperCase() + level.name.slice(1) }}
+	ul(id="{{ level.name }}Questions", class="picker-list")
+		li(ng-repeat="question in level.questions", class="pull-left text-center", ng-class="{last: ($index === (verbs.length - 1))}")
+			a(ng-href="/games/{{ routeParams.game }}/{{ routeParams.level }}/{{ question.slug }}")
+				h2 {{ question.name }}

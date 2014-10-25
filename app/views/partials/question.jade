@@ -1,0 +1,40 @@
+div(class="", ng-if="gameType === 'standard' && question")
+    div(id="question")
+        h1 {{ question.name }}
+        img(src="{{ question.image }}")
+
+    form(id="answer", method="post", action="/api/games/{{ game }}/{{ level }}/{{ question }}/user-score")
+
+
+
+table(class="table", ng-if="gameType === 'conjugation' && question")
+    thead
+        tr(answer, type="infinitive")
+
+    tbody
+        tr(ng-repeat="conjugation in question.conjugations")
+            td {{ conjugation.subject }}
+            td(answer, type="conjugation")
+        tr
+            td {{ totalCorrect }}/{{ question.conjugations.length + 1 }}
+            td(ng-show="isComplete()") Level Complete!
+
+        //- tr(class="pagination", verb="question", level-is-complete="{{ isComplete }}")
+        tr(pagination)
+
+table(class="table", ng-if="gameType === 'jumble' && question")
+    thead
+        tr(infinitive="{{ verb.infinitive }}", slug="verb.slug", english="verb.english")
+
+    tbody
+        tr(ng-repeat="subj in order")
+            td {{ subj }}
+            td(conjugation="conjugation", subject="{{ $index }}", verb="verb")
+        tr
+            td {{ correctAnswerCount }}/{{ order.length + 1 }}
+            td(ng-show="isComplete") Level Complete!
+        tr(class="pagination", verb="verb", level-is-complete="{{ isComplete }}")
+
+div(class="has-error" ng-if="!question")
+    h2 Error!
+    p Level not found.

@@ -1,0 +1,2 @@
+input(type="text", ng-model="value", class="answer-{{ answerValidity || unanswered }}", ng-blur="checkAnswer({ answer: value, conjugation: conjugation._id })")
+i(class="fa fa-{{ iconClass }}", ng-show="isAnswered(value)")

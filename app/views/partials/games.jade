@@ -1,0 +1,12 @@
+ul(id="games", class="picker-list")
+	li(ng-repeat="game in games", class="pull-left text-center", ng-class="{last: ($index === (games.length - 1))}")
+		div(ng-if="game.local.progress.completed")
+			p Level complete
+		
+		div(ng-if="game.local.progress.inProgress")
+			a(ng-href="/games/{{ game.slug }}")
+				h2 {{ game.name }}
+				p {{ game.description }}
+
+		div(ng-if="game.local.progress.locked")
+			i(class="fa fa-lock")
